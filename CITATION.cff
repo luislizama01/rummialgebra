@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-message: "If you use RummiAlgebra V2 in your work, please cite the associated software release and manuscript."
+message: "If you use RummiAlgebra in your research or teaching, cite the archived V2.0.0 software release."
 type: software
 title: "RummiAlgebra: Interactive Polynomial Learning with Jokers"
-version: "2"
+version: "2.0.0"
 authors:
   - family-names: "Lizama Pérez"
     given-names: "Luis Adrián"
@@ -15,3 +15,4 @@ keywords:
   - jokers
 repository-code: "https://github.com/luislizama01/rummialgebra"
 url: "https://luislizama01.github.io/rummialgebra/"
+doi: "10.5281/zenodo.24323391"
