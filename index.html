@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>RummiÁlgebra V2 | Laboratorio de comodines y polinomios</title>
+<style>
+:root{--ink:#182c32;--muted:#61717a;--line:#dce5e3;--paper:#f7f9f5;--white:#fff;--teal:#126b62;--mint:#e4f2ed;--amber:#b3741b;--rose:#d34a58;--shadow:0 10px 28px rgba(18,52,49,.055)}
+*{box-sizing:border-box}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.45}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.48}sup{font-size:.7em}button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,.tile:focus-visible{outline:3px solid #e2a851;outline-offset:3px}
+.hero{background:#102f34;color:#f6fff8;position:relative;overflow:hidden}.hero:after{content:"x² + 2x + 1";position:absolute;right:-30px;top:7px;font-family:Georgia,serif;font-size:clamp(52px,10vw,155px);font-style:italic;white-space:nowrap;color:rgba(145,224,202,.055);transform:rotate(-11deg);pointer-events:none}.hero-wrap{max-width:1340px;padding:25px 32px 28px;margin:auto;position:relative;z-index:1}.tagline{font-size:11px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;color:#a8dfc6}.hero h1{margin:5px 0 6px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(33px,4vw,53px);line-height:1.04;letter-spacing:-1.5px;font-weight:600}.hero p{max-width:810px;margin:8px 0 0;color:#bed3cf;font-size:15px}.hero-kpi{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}.hero-kpi span{border:1px solid #2d5a59;background:#1c4448;border-radius:99px;font-size:12px;padding:5px 11px;color:#d6eee6}
+.shell{max-width:1340px;margin:0 auto;padding:19px 32px 48px}.toolbar{display:flex;gap:13px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:15px}.challenges{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.eyebrow{font-size:11px;color:var(--muted);letter-spacing:1px;font-weight:800;text-transform:uppercase}.challenge{border-radius:10px;border:1px solid #d5dfdc;background:#fff;color:#405961;font-size:13px;padding:9px 13px;font-weight:700}.challenge.active{background:var(--teal);color:#fff;border-color:var(--teal)}.toolbar-right{display:flex;gap:7px;flex-wrap:wrap}.btn{border:1px solid #cadad5;border-radius:10px;padding:9px 13px;background:#fff;color:var(--ink);font-weight:750;font-size:13px;box-shadow:none}.btn:hover:not(:disabled){border-color:#8bbcb0;background:#f6fffb}.btn-primary{background:#126b62;color:#fff;border-color:#126b62}.btn-primary:hover:not(:disabled){background:#0e5b53;border-color:#0e5b53}.btn-soft{background:#e4f2ed;color:#14645b;border-color:#c1e3d5}.btn-ghost{border-color:transparent;background:transparent}.btn-warm{background:#fff4df;border-color:#f0d6ac;color:#7d5517}
+.lesson{display:grid;grid-template-columns:1fr auto;gap:12px;background:#eef7f0;border:1px solid #d8e9dd;border-radius:14px;padding:12px 16px;margin-bottom:16px;align-items:center}.lesson strong{display:block;font-size:14px}.lesson p{font-size:13px;color:#4c6963;margin:2px 0 0}.lesson .milestones{display:flex;gap:5px;align-items:center}.milestone{background:#fff;border:1px solid #d3e5d9;border-radius:8px;padding:7px 10px;font-size:11px;color:#527269;white-space:nowrap}.milestone strong{font-size:12px;color:#136b61;display:inline}
+.workspace{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(360px,1fr);gap:16px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:16px 19px;border-bottom:1px solid #e6edeb;display:flex;justify-content:space-between;align-items:center;gap:10px}.panel-head h2{font-size:16px;margin:0;letter-spacing:-.3px}.panel-sub{font-size:12px;color:var(--muted);margin:4px 0 0}.badge{font-size:11px;font-weight:800;border-radius:999px;padding:5px 9px;background:#ebf4f2;color:#277268;white-space:nowrap}.panel-body{padding:16px 19px 20px}.tile-bank{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}.tray{border:1px dashed #cbd8d3;border-radius:12px;padding:12px;min-height:113px;transition:.15s}.tray.is-target,.meld-card.is-target{border-color:#1d9683;background:#f1fbf7}.tray-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.tray h3{font-size:12px;margin:0}.small{color:var(--muted);font-size:12px}.tiles{display:flex;flex-wrap:wrap;gap:6px;min-height:54px;align-content:start}.tile{border:1px solid #d7e2df;box-shadow:0 2px 0 #d7e0dc;background:#fff;width:45px;height:56px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px;user-select:none;flex-shrink:0;touch-action:manipulation;position:relative}.tile .number{font-size:23px;font-weight:850;line-height:1}.tile .tiny{font-size:8px;text-transform:uppercase;letter-spacing:.4px;font-weight:850;opacity:.8}.tile[data-color="R"]{color:#c94854}.tile[data-color="A"]{color:#2774b4}.tile[data-color="V"]{color:#248365}.tile[data-color="N"]{color:#3e4351}.tile[data-color="J"]{color:#8256ba;background:#f5edff;border-color:#cdb3e8;box-shadow:0 2px 0 #d5c2ed}.tile[data-color="J"] .number{font-size:26px}.joker-box{border-color:#d9c6e9;background:#fbf7ff}.joker-settings{margin:9px 0;padding:9px 10px;background:#f9f4ff;border:1px solid #eadcf5;border-radius:9px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.joker-settings strong{font-size:12px;color:#6e4d94}.joker-settings label{font-size:11px;color:#715787}.joker-settings select{border:1px solid #dfd0ee;border-radius:7px;background:#fff;color:#594174;padding:4px;font-size:12px}.joker-settings .btn{font-size:11px}.mini-tile.J{color:#8256ba;border-color:#bfa0d9}.assignment-pending{color:#9e6621}.math-expression .color-j{color:#8256ba}.tile.selected{outline:3px solid #e3aa52;outline-offset:2px;transform:translateY(-2px);box-shadow:0 4px 10px #dfa74f22}.tile .origin{height:5px;position:absolute;bottom:0;left:8px;right:8px;border-radius:4px 4px 0 0;background:#dce9e5}.tile[data-origin="mesa"] .origin{background:#e6a653}.empty{color:#8a9c9a;font-size:12px;font-style:italic;line-height:1.5}
+.section-label{display:flex;justify-content:space-between;align-items:center;margin:19px 0 10px;gap:8px}.section-label h3{font-size:14px;margin:0}.section-label .small{font-size:11px}.melds{display:flex;flex-direction:column;gap:9px}.meld-card{border:1px solid #d9e4e0;border-radius:12px;padding:11px 12px;transition:.15s;background:#fff}.meld-card.invalid{border-color:#efd5a8;background:#fffdf8}.meld-card.good{border-color:#b6dcd0;background:#f8fcf9}.meld-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.meld-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.meld-title strong{font-size:13px}.type-selector{border:1px solid #dce6e2;border-radius:7px;font-size:12px;padding:5px 5px;color:#50645e;background:#fff}.icon-btn{border:none;background:transparent;font-size:18px;color:#83948e;padding:3px 7px;border-radius:6px}.icon-btn:hover{background:#f3e9e6;color:#b84c40}.meld-tiles{padding:10px 0 8px;display:flex;gap:6px;min-height:59px;flex-wrap:wrap;align-items:center;cursor:pointer}.validation{font-size:11px;color:#9d6425;margin:0 0 8px}.validation.ok{color:#36816c}.factor-buttons{display:flex;flex-wrap:wrap;gap:6px;border-top:1px dashed #e4ece8;padding-top:8px}.factor-buttons .btn{font-size:11px;padding:6px 8px}.math-line{display:block;border-radius:8px;padding:9px 10px;background:#e8f4ed;margin-top:9px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#275950;line-height:1.6;overflow-wrap:anywhere}.math-mini{font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#41555a;word-break:break-word}.build-buttons{display:flex;gap:9px;margin-top:12px;flex-wrap:wrap}.score-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:15px}.stat{border-radius:11px;background:#f1f6f3;padding:10px}.stat .num{font-size:23px;color:#156b61;font-weight:800;line-height:1.3}.stat .label{color:#678077;font-size:11px;font-weight:650;margin-top:3px}.notice{border:1px solid #dee8e4;background:#f7faf7;border-radius:10px;padding:10px 12px;font-size:13px;margin-top:13px;color:#45635d}.notice.warn{background:#fff8eb;border-color:#f1dcba;color:#806026}.notice.success{background:#e7f6ed;border-color:#c0e4cd;color:#236448}.notice.error{background:#fff2f1;border-color:#eed1cd;color:#973e42}
+.math-panel{position:sticky;top:16px}.math-box{border:1px solid #e5eeea;border-radius:12px;padding:12px;margin-bottom:11px}.math-title{font-size:11px;color:#658077;text-transform:uppercase;font-weight:850;letter-spacing:.6px;display:flex;gap:8px;align-items:center;margin-bottom:7px}.math-expression{font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.85;overflow-wrap:anywhere;color:#18393d}.math-expression .color-r{color:#c94854}.math-expression .color-a{color:#2774b4}.math-expression .color-v{color:#248365}.math-expression .color-n{color:#3e4351}.math-hint{color:#647c75;font-size:12px;margin-top:7px}.rule{border-left:3px solid #c7e2d5;padding-left:12px;margin:13px 0;font-size:13px;color:#526b65}.rule b{color:#22594e}.switcher{display:flex;border:1px solid #dfebe5;border-radius:9px;padding:3px;margin-bottom:12px;background:#f6faf8;gap:4px}.switcher button{flex:1;border:0;border-radius:7px;background:transparent;padding:7px;font-size:12px;font-weight:750;color:#628077}.switcher button.active{background:#fff;box-shadow:0 2px 7px #17483918;color:#12675e}.steps{display:flex;flex-direction:column;gap:10px}.step{border-left:2px solid #d3e3dd;padding-left:12px}.step b{font-size:12px;color:#32574f}.step p{margin:3px 0 0;color:#566d66;font-size:12px}.legend{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px;color:#68817a;font-size:11px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a653;margin-right:4px}.dot.hand{background:#dce9e5}
+.custom{margin-top:16px}.custom details{border:1px solid #dce5e2;background:#fff;border-radius:14px;padding:15px 18px}.custom summary{font-weight:800;color:#38564f;cursor:pointer;font-size:14px}.custom p{font-size:12px;color:var(--muted);margin:8px 0}.custom-fields{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end;margin-top:12px}.custom label{font-size:12px;font-weight:700;color:#47645e}.custom input{width:100%;margin-top:5px;border:1px solid #d5e0da;border-radius:8px;padding:9px 10px;font-size:13px}.custom-note{font-size:12px;min-height:15px;color:#a34b3e;margin:7px 0}.footer{margin:22px auto 0;color:#708680;font-size:12px;text-align:center;max-width:850px}.winner{padding:10px;border-radius:9px;background:#e8f5ee;margin-top:8px;font-size:12px}.tooltip-lesson{margin-top:8px;background:#fff7e7;border:1px solid #f2e4c7;border-radius:9px;padding:9px;color:#7e5d27;font-size:12px}.solutions{max-height:290px;overflow:auto}.solution-meld{padding:8px 0;border-bottom:1px dashed #e1eae7}.solution-meld:last-child{border-bottom:0}.mini-tile{display:inline-block;padding:2px 6px;margin:2px 2px 2px 0;background:#fff;border:1px solid #dce5e2;border-radius:5px;font-size:11px;font-weight:800}.mini-tile.R{color:#c94854}.mini-tile.A{color:#2774b4}.mini-tile.V{color:#248365}.mini-tile.N{color:#3e4351}
+@media(max-width:1050px){.workspace{grid-template-columns:1fr}.math-panel{position:static}.panel-body{padding:15px}}@media(max-width:670px){.hero-wrap,.shell{padding-left:14px;padding-right:14px}.lesson{grid-template-columns:1fr}.lesson .milestones{flex-wrap:wrap}.tile-bank{grid-template-columns:1fr}.custom-fields{grid-template-columns:1fr}.score-strip{grid-template-columns:repeat(3,1fr)}.stat .num{font-size:19px}.hero h1{font-size:38px}.tile{width:44px;height:53px}.toolbar{align-items:start}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="hero-wrap">
+<div class="tagline">Laboratorio interactivo · Álgebra aplicada</div>
+<h1>Rummi<span style="color:#91d9b9">Álgebra</span></h1>
+<p>Reorganiza fichas como en Rummikub. Cada escalera y cada grupo debe justificarse mediante <strong>sustituciones y factorizaciones correctas</strong>. Aprende sumas, factor común e identidades de polinomios jugando.</p>
+<div class="hero-kpi"><span>● Sin conexión</span><span>● Jugadas reales</span><span>● Expresiones sincronizadas</span><span>★ Comodines: sustitución algebraica</span></div>
+</div></header>
+<main class="shell">
+<div class="toolbar"><div class="challenges"><span class="eyebrow">Desafíos</span><button class="challenge active" data-scenario="0">01 · Reorganizar</button><button class="challenge" data-scenario="1">02 · Abrir con 30</button><button class="challenge" data-scenario="2">03 · Repartir grupos</button><button class="challenge" data-scenario="3">04 · Comodín puente</button><button class="challenge" data-scenario="4">05 · Comodín en grupo</button><button class="challenge" data-scenario="5">06 · Dos comodines</button></div><div class="toolbar-right"><button class="btn" id="resetBtn">↺ Reiniciar</button><button class="btn btn-warm" id="hintBtn">✦ Una pista</button><button class="btn" id="solutionBtn">Ver solución</button></div></div>
+<section class="lesson"><div><strong id="challengeTitle">Desafío 1: transformar una escalera</strong><p id="challengeDesc">Reutiliza el 6 rojo para crear un grupo y juega el máximo de puntos desde la mano.</p></div><div class="milestones"><span class="milestone"><strong>1</strong> Mueve</span><span class="milestone"><strong>2</strong> Sustituye / factoriza</span><span class="milestone"><strong>3</strong> Comprueba</span></div></section>
+<div class="workspace">
+<section class="panel" aria-label="Área de juego"><div class="panel-head"><div><h2>Tablero de fichas</h2><p class="panel-sub">Haz clic en una ficha y luego en su destino, o arrástrala.</p></div><span class="badge" id="countBadge">7 fichas</span></div><div class="panel-body">
+<div class="tile-bank"><div class="tray" id="freeTable" role="button" tabindex="0" aria-label="Destino mesa sin agrupar"><div class="tray-head"><h3>◦ Mesa por reorganizar</h3><span class="small" id="tableFreeCount">0</span></div><div class="tiles" id="tableFreeTiles"></div></div><div class="tray" id="freeHand" role="button" tabindex="0" aria-label="Destino mano sin jugar"><div class="tray-head"><h3>◦ Fichas en mi mano</h3><span class="small" id="handFreeCount">3</span></div><div class="tiles" id="handFreeTiles"></div></div></div>
+<div class="section-label"><h3>Combinaciones sobre la mesa</h3><span class="small" id="comboCount">1 combinación</span></div>
+<div class="melds" id="melds"></div>
+<div class="build-buttons"><button class="btn btn-soft" id="addRunBtn">+ Nueva escalera</button><button class="btn btn-soft" id="addGroupBtn">+ Nuevo grupo</button></div>
+<div class="score-strip"><div class="stat"><div class="num" id="points">0</div><div class="label">Puntos de mano usados</div></div><div class="stat"><div class="num" id="played">0</div><div class="label">Fichas jugadas</div></div><div class="stat"><div class="num" id="factors">0/1</div><div class="label">Factorizaciones</div></div></div>
+<div id="gameNotice" class="notice">Selecciona una ficha y haz clic sobre una combinación para moverla.</div>
+<div class="build-buttons"><button class="btn btn-primary" id="checkBtn">✓ Comprobar jugada</button><button class="btn" id="expandBtn">≡ Desarrollar polinomios</button></div>
+</div></section>
+<aside class="panel math-panel" aria-label="Panel de álgebra"><div class="panel-head"><div><h2>Cuaderno algebraico</h2><p class="panel-sub">Las expresiones cambian con cada movimiento.</p></div><span class="badge">P(x)</span></div><div class="panel-body">
+<div class="math-box"><div class="math-title">Inventario físico · fichas reales</div><div id="originalExpr" class="math-expression"></div><div class="math-hint">Una ficha normal 6R equivale a <em>r</em>x<sup>6</sup>. Un comodín se escribe J₁ o J₂: todavía no tiene valor fijo.</div></div>
+<div class="math-box joker-box"><div class="math-title">Sustituciones del comodín · σ</div><div id="substitutions" class="math-expression"></div><div class="math-hint">Jᵢ ↦ color·xⁿ es una <b>sustitución elegida</b>, no una identidad válida para todos los valores.</div></div>
+<div class="math-box"><div class="math-title">Polinomio tras aplicar σ</div><div id="effectiveExpr" class="math-expression"></div><div class="math-hint">El polinomio de sustitución y el reorganizado deben coincidir cuando se desarrollan.</div></div>
+<div class="math-box"><div class="math-title">Polinomio reorganizado</div><div id="currentExpr" class="math-expression"></div><div class="math-hint" id="conservation">Primero asigna los comodines y después desarrolla las factorizaciones.</div></div>
+<div class="switcher" role="group" aria-label="Modo del cuaderno"><button id="tabOperations" class="active">Operaciones</button><button id="tabRules">Reglas</button></div>
+<div id="operationsTab" class="steps"><div class="step"><b>1 · Suma de polinomios</b><p>Los términos de las fichas se suman; los coeficientes cuentan copias.</p></div><div class="step"><b>2 · Sustitución</b><p>J₁ y J₂ son fichas físicas. En cada jugada concreta, elige σ(Jᵢ)=c·xⁿ.</p></div><div class="step"><b>3 · Factor común</b><p>Escalera: extrae el color. Grupo: extrae la potencia del valor compartido.</p></div><div class="step"><b>4 · Distributividad</b><p>Desarrolla las expresiones para comprobar que no se perdió ninguna ficha.</p></div><div class="step"><b>5 · Condición del juego</b><p>Una identidad algebraica correcta no basta: cada grupo debe respetar las reglas.</p></div></div>
+<div id="rulesTab" style="display:none"><div class="rule"><b>Escalera</b>: al menos tres fichas de un color, con números consecutivos y sin repetir.</div><div class="rule"><b>Grupo</b>: tres o cuatro fichas del mismo número y de colores distintos.</div><div class="rule"><b>Comodín</b>: representa exactamente un valor y un color dentro de una combinación; debe indicarse antes de validar. El puntaje del comodín de la mano es su valor asignado.</div><div class="rule"><b>Alcance</b>: se verifica la distribución final. Las reglas particulares para recuperar un comodín ya presente en la mesa pueden exigir movimientos adicionales y no se verifican aquí.</div><div class="rule"><b>Mesa</b>: todas las fichas iniciales deben permanecer en combinaciones válidas.</div><div class="rule"><b>Apertura</b>: en el desafío 2 se exigen al menos 30 puntos en la primera jugada.</div></div>
+<div class="math-hint"><b>Método avanzado:</b> un comodín no es una variable libre que siempre valga lo mismo. Su reemplazo se fija por jugada mediante σ; entonces se comprueba la identidad y la legalidad.</div><div class="legend"><span><i class="dot"></i>Ficha originalmente en la mesa</span><span><i class="dot hand"></i>Ficha de la mano</span></div>
+</div></aside>
+</div>
+<section class="custom"><details id="customDetails"><summary>+ Crear mi propio ejercicio con fichas</summary><p>Escribe número y color: <b>R</b> = rojo, <b>A</b> = azul, <b>V</b> = verde, <b>N</b> = negro. Ejemplo: <b>3R 4R 5R</b>. Se aceptan hasta dos copias de cada ficha; escribe <b>J</b> para un comodín (máximo dos entre mesa y mano).</p><div class="custom-fields"><label>Fichas de la mesa<input id="customTable" value="3R 4R 5R 6R" spellcheck="false" placeholder="3R 4R 5R 6R"></label><label>Fichas de la mano<input id="customHand" value="7R 6A 6V" spellcheck="false" placeholder="7R 6A 6V"></label><button class="btn btn-primary" id="loadCustom">Cargar fichas</button></div><div id="customError" class="custom-note" aria-live="polite"></div><p>Modelo didáctico: se permiten hasta dos comodines. Si J estaba ya en la mesa, se conserva su uso, pero no se comprueban los procedimientos particulares de recuperación.</p></details></section>
+<div class="footer">Modelo didáctico de Rummikub: la sustitución algebraica verifica la distribución final; las condiciones adicionales para recuperar comodines de la mesa dependen de las reglas empleadas.</div>
+</main>
+<script>
+'use strict';
+const COLOR={R:{name:'rojo',letter:'r'},A:{name:'azul',letter:'b'},V:{name:'verde',letter:'g'},N:{name:'negro',letter:'k'}};
+const SCENARIOS=[
+ {name:'Desafío 1 · Transformar una escalera',desc:'Reutiliza el 6 rojo para crear un grupo y juega el máximo de puntos desde la mano.',table:'3R 4R 5R 6R',hand:'7R 6A 6V',start:[{type:'run',tokens:['3R','4R','5R','6R']}],opening:false},
+ {name:'Desafío 2 · Primera jugada',desc:'No hay fichas sobre la mesa. Construye combinaciones que sumen al menos 30 puntos desde tu mano.',table:'',hand:'3R 4R 5R 6A 6V 6N 7R 8R',start:[],opening:true},
+ {name:'Desafío 3 · Desarmar y recomponer',desc:'La mesa contiene un grupo de 6. Reorganízalo para jugar la mayor cantidad de puntos.',table:'6R 6A 6V',hand:'5R 7R 8R 6N 8A 8V',start:[{type:'group',tokens:['6R','6A','6V']}],opening:false},
+ {name:'Desafío 4 · Comodín puente',desc:'Construye una escalera usando J₁ como número faltante entre 5R y 7R. Justifica la sustitución.',table:'',hand:'5R 7R J',start:[],opening:false},
+ {name:'Desafío 5 · Comodín en grupo',desc:'Con 9R, 9A y J₁, forma un grupo: ¿qué color y potencia debe representar el comodín?',table:'',hand:'9R 9A J',start:[],opening:false},
+ {name:'Desafío 6 · Dos comodines',desc:'Compara dos soluciones: completar 4R–7R con 5R y 6R, o formar 7R–9R con 8R y 9R. ¿Cuál es mejor?',table:'',hand:'4R 7R J J',start:[],opening:false}
+];
+let optimumCache=undefined;
+let tiles=[],melds=[],selected=null,serial=0,mid=0,scenario=0,opening=false,mode='operations',showExpanded=false,feedback={text:'Selecciona una ficha y haz clic sobre una combinación para moverla.',kind:''},reveal=false;
+const $=id=>document.getElementById(id);
+function escapeHTML(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function parseTokens(s){
+ if(!String(s).trim())return [];
+ return String(s).trim().split(/[\s,;]+/).filter(Boolean).map(token=>{
+  if(token.toUpperCase()==='J'||token==='*')return {num:null,color:null,token:'J',wild:true,assign:{num:null,color:null}};
+  const m=token.toUpperCase().match(/^([1-9]|1[0-3])(R|A|V|N|B|G|K)$/);
+  if(!m)throw Error('Ficha inválida: «'+token+'». Usa 1–13 + R/A/V/N, o J para comodín.');
+  const col=({B:'A',G:'V',K:'N'})[m[2]]||m[2];
+  return {num:Number(m[1]),color:col,token:m[1]+col,wild:false,assign:null};
+ });
+}
+function parseSetup(table,hand){
+ const a=parseTokens(table),b=parseTokens(hand),count=new Map();let jokerCount=0;
+ for(const t of a.concat(b)){
+  if(t.wild){jokerCount++;continue;}
+  const n=(count.get(t.token)||0)+1;
+  if(n>2)throw Error('No puede haber más de dos copias de '+t.token+'.');count.set(t.token,n);
+ }
+ if(jokerCount>2)throw Error('El ejercicio admite como máximo dos comodines (J).');
+ if(a.length+b.length>30)throw Error('Máximo 30 fichas por ejercicio.');
+ return {a,b};
+}
+function init(sidx){scenario=sidx;reveal=false;const s=SCENARIOS[sidx];const setup=parseSetup(s.table,s.hand);optimumCache=undefined;serial=0;mid=0;tiles=setup.a.map(t=>({...t,id:'t'+(++serial),origin:'mesa',loc:null})).concat(setup.b.map(t=>({...t,id:'t'+(++serial),origin:'mano',loc:null})));melds=[];opening=s.opening;for(const item of s.start){const m={id:'m'+(++mid),type:item.type,ids:[],factored:false,proof:false};for(const tok of item.tokens){const tile=tiles.find(t=>t.token===tok&&!t.loc);if(!tile)throw Error('Desafío inconsistente: '+tok);tile.loc=m.id;m.ids.push(tile.id);}melds.push(m);}selected=null;showExpanded=false;feedback={text:'Selecciona una ficha y luego su combinación de destino. Para validarla, elige una factorización.',kind:''};$('challengeTitle').textContent=s.name;$('challengeDesc').textContent=s.desc;document.querySelectorAll('.challenge').forEach(b=>b.classList.toggle('active',Number(b.dataset.scenario)===sidx));render();}
+function loadCustom(){try{const ta=$('customTable').value,ha=$('customHand').value;const setup=parseSetup(ta,ha);optimumCache=undefined;if(!setup.a.length&&!setup.b.length)throw Error('Introduce al menos una ficha.');serial=0;mid=0;tiles=setup.a.map(t=>({...t,id:'t'+(++serial),origin:'mesa',loc:null})).concat(setup.b.map(t=>({...t,id:'t'+(++serial),origin:'mano',loc:null})));melds=[];scenario=-1;opening=false;selected=null;reveal=false;showExpanded=false;feedback={text:'Ejercicio cargado. Asigna los comodines y factoriza las combinaciones para validar tu jugada.',kind:''};document.querySelectorAll('.challenge').forEach(b=>b.classList.remove('active'));$('challengeTitle').textContent='Ejercicio personalizado · Construye tus propias combinaciones';$('challengeDesc').textContent='Primero agrupa las fichas; después prueba la factorización de cada combinación.';$('customError').textContent='';$('customDetails').open=false;render();}catch(e){$('customError').textContent=e.message;}}
+const getTile=id=>tiles.find(t=>t.id===id);
+const jokerLabel=t=>'J'+(tiles.filter(x=>x.wild).findIndex(x=>x.id===t.id)+1);
+function effective(t){
+ if(!t.wild)return {num:t.num,color:t.color};
+ return t.assign&&Number.isInteger(t.assign.num)&&t.assign.num>=1&&t.assign.num<=13&&COLOR[t.assign.color]?{num:t.assign.num,color:t.assign.color}:null;
+}
+function workingTile(t){const e=effective(t);return e?{...t,num:e.num,color:e.color}:t;}
+function tileScore(t){if(!t.loc)return 0;const e=effective(t);return e?e.num:0;}
+function symbol(t){return 'J<sub>'+jokerLabel(t).slice(1)+'</sub>';}
+function assignmentExpr(t){const e=effective(t);return e?`<span class="color-${e.color.toLowerCase()}"><i>${COLOR[e.color].letter}</i></span><i>x</i><sup>${e.num}</sup>`:symbol(t);}
+function clearJoker(t){if(t.wild)t.assign={num:null,color:null};}
+
+const getMeld=id=>melds.find(m=>m.id===id);
+const inMeld=m=>m.ids.map(getTile).filter(Boolean);
+function assess(m){
+ const a=inMeld(m),n=a.length;
+ if(n<3)return {ok:false,reason:'Necesitas al menos 3 fichas.'};
+ const pending=a.filter(t=>!effective(t));
+ if(pending.length)return {ok:false,reason:'Asigna valor (1–13) y color a '+pending.map(jokerLabel).join(', ')+'.'};
+ const r=a.map(workingTile);
+ if(m.type==='run'){
+  const c=r[0].color;
+  if(r.some(t=>t.color!==c))return {ok:false,reason:'Una escalera debe tener un solo color (incluidos los comodines).'};
+  const values=r.map(t=>t.num).sort((x,y)=>x-y);
+  if(values.some((x,i)=>i&&x!==values[i-1]+1))return {ok:false,reason:'Los valores deben ser consecutivos y no repetirse.'};
+  return {ok:true,reason:'Escalera válida y sustitución compatible.'};
+ }
+ if(n>4)return {ok:false,reason:'Un grupo admite como máximo 4 fichas.'};
+ if(r.some(t=>t.num!==r[0].num))return {ok:false,reason:'El grupo requiere un mismo número (también para el comodín).'};
+ if(new Set(r.map(t=>t.color)).size!==n)return {ok:false,reason:'Cada color debe ser distinto dentro del grupo.'};
+ return {ok:true,reason:'Grupo válido y sustitución compatible.'};
+}
+function tileEl(t){
+ const el=document.createElement('button');el.type='button';
+ el.className='tile'+(selected===t.id?' selected':'');el.dataset.color=t.wild?'J':t.color;
+ el.dataset.origin=t.origin;el.dataset.tileid=t.id;el.draggable=true;
+ const e=effective(t);
+ el.title=t.wild?`${jokerLabel(t)} comodín: ${e?e.num+e.color:'sin asignar'}; origen: ${t.origin}`:`${t.num} ${COLOR[t.color].name}, origen: ${t.origin}`;
+ el.setAttribute('aria-label',el.title);
+ el.innerHTML=t.wild?`<span class="number">★</span><span class="tiny">${e?e.num+e.color:jokerLabel(t)}</span><i class="origin"></i>`:
+ `<span class="number">${t.num}</span><span class="tiny">${COLOR[t.color].name}</span><i class="origin"></i>`;
+ el.addEventListener('click',e=>{e.stopPropagation();selectTile(t.id)});
+ el.addEventListener('dragstart',e=>{selected=t.id;e.dataTransfer.setData('text/plain',t.id);e.dataTransfer.effectAllowed='move'});
+ return el;
+}
+function selectTile(id){selected=selected===id?null:id;feedback={text:selected?'Ficha seleccionada. Ahora pulsa la combinación de destino o una de las bandejas.':'Selección desactivada.',kind:''};render();}
+function moveTile(id,destination){
+ const t=getTile(id);if(!t)return;const source=t.loc;
+ if(source===destination){selected=null;render();return;}
+ if(source){const old=getMeld(source);if(old){old.ids=old.ids.filter(x=>x!==id);old.factored=false;old.proof=false;}}
+ if(destination){const m=getMeld(destination);if(!m)return;m.ids.push(id);m.factored=false;m.proof=false;}
+ if(t.wild)clearJoker(t);
+ t.loc=destination;selected=null;reveal=false;
+ feedback={text:t.wild&&destination?'Comodín movido: asigna su valor y color antes de factorizar.':'Movimiento registrado. Comprueba las reglas y luego factoriza.',kind:''};render();
+}
+function dropTarget(node,targetId){node.addEventListener('dragover',e=>{e.preventDefault();node.classList.add('is-target')});node.addEventListener('dragleave',()=>node.classList.remove('is-target'));node.addEventListener('drop',e=>{e.preventDefault();node.classList.remove('is-target');const id=e.dataTransfer.getData('text/plain')||selected;if(id)moveTile(id,targetId);});node.addEventListener('click',e=>{if(e.target.closest('.tile')||e.target.closest('.btn')||e.target.closest('select')||e.target.closest('.icon-btn')||e.target.closest('.joker-settings'))return;if(selected)moveTile(selected,targetId);});node.addEventListener('keydown',e=>{if(e.key==='Enter'&&selected)moveTile(selected,targetId);});}
+function setFeedback(text,kind=''){feedback={text,kind};renderNotice();}
+function renderNotice(){const el=$('gameNotice');el.className='notice '+feedback.kind;el.textContent=feedback.text;}
+function addMeld(type){const m={id:'m'+(++mid),type,ids:[],factored:false,proof:false};melds.push(m);feedback={text:'Nueva '+(type==='run'?'escalera':'agrupación')+' creada. Selecciona una ficha y pulsa aquí para colocarla.',kind:''};render();}
+function deleteMeld(id){const m=getMeld(id);if(!m)return;
+ for(const t of inMeld(m)){t.loc=null;clearJoker(t);}melds=melds.filter(x=>x.id!==id);
+ selected=null;reveal=false;feedback={text:'Se eliminó la combinación; sus fichas regresaron a las bandejas.',kind:''};render();
+}
+function changeType(id,type){const m=getMeld(id);if(!m)return;m.type=type;m.factored=false;m.proof=false;reveal=false;render();}
+function polyTerm(t){
+ const e=effective(t);
+ if(!e)return symbol(t);
+ return `<span class="color-${e.color.toLowerCase()}"><i>${COLOR[e.color].letter}</i></span><i>x</i><sup>${e.num}</sup>`;
+}
+function basicSum(a){if(!a.length)return '0';return a.slice().sort((x,y)=>(effective(x)?.num||99)-(effective(y)?.num||99)||String(x.id).localeCompare(String(y.id))).map(polyTerm).join(' + ');}
+function coeffSum(a){
+ if(!a.length)return '0';const counts=new Map(),wild=[];
+ for(const t of a){const e=effective(t);if(!e){wild.push(t);continue;}
+  const key=e.num+':'+e.color;counts.set(key,{t,n:(counts.get(key)?.n||0)+1});
+ }
+ const regular=[...counts.values()].sort((u,v)=>effective(u.t).num-effective(v.t).num||'RAVN'.indexOf(effective(u.t).color)-'RAVN'.indexOf(effective(v.t).color)).map(o=>(o.n>1?o.n+'':'')+polyTerm(o.t));
+ return regular.concat(wild.map(symbol)).join(' + ')||'0';
+}
+function mathX(n){return '<i>x</i><sup>'+n+'</sup>';}
+function factored(m){
+ const a=inMeld(m).map(workingTile),valid=assess(m);if(!valid.ok)return '('+basicSum(inMeld(m))+')';
+ if(m.type==='run'){
+  const v=a.map(t=>t.num).sort((x,y)=>x-y),col=COLOR[a[0].color].letter;
+  const series=v.map((n,i)=>i===0?'1':i===1?'<i>x</i>':mathX(i)).join(' + ');
+  return `<i>${col}</i>${mathX(v[0])}(${series})`;
+ }
+ const colors=a.slice().sort((u,v)=>'RAVN'.indexOf(u.color)-'RAVN'.indexOf(v.color)).map(t=>`<i>${COLOR[t.color].letter}</i>`).join(' + ');
+ return mathX(a[0].num)+'('+colors+')';
+}
+function colorOnly(m){const a=inMeld(m).map(workingTile).sort((x,y)=>x.num-y.num);
+ if(!a.length||m.type!=='run'||!assess(m).ok)return factored(m);
+ return '<i>'+COLOR[a[0].color].letter+'</i>('+a.map(t=>mathX(t.num)).join(' + ')+')';
+}
+function identity(m){
+ const a=inMeld(m).map(workingTile),raw=basicSum(inMeld(m)),fac=factored(m);
+ if(m.type==='run'){
+  const v=a.map(t=>t.num).sort((x,y)=>x-y);
+  return {raw,fac,proof:`(1 − <i>x</i>)(${v.map(n=>mathX(n)).join(' + ')}) = ${mathX(v[0])} − ${mathX(v.at(-1)+1)}`,why:'Las potencias interiores se cancelan. Esta identidad describe la escalera después de asignar los comodines.'};
+ }
+ return {raw,fac,proof:`${fac} = ${raw}`,why:'La propiedad distributiva recupera los monomios sustituidos.'};
+}
+function assignJoker(id,kind,val){
+ const t=getTile(id);if(!t||!t.wild||!t.loc)return;
+ if(!t.assign)t.assign={num:null,color:null};
+ if(kind==='num')t.assign.num=val?Number(val):null;
+ if(kind==='color')t.assign.color=COLOR[val]?val:null;
+ const m=getMeld(t.loc);if(m){m.factored=false;m.proof=false;}
+ reveal=false;feedback={text:'Sustitución actualizada. Comprueba la validez del grupo o escalera.',kind:''};render();
+}
+function suggestJokers(m){
+ const all=inMeld(m),wild=all.filter(t=>t.wild),regular=all.filter(t=>!t.wild);
+ if(!wild.length){setFeedback('Esta combinación no contiene comodines.','warn');return;}
+ let replacements=[];
+ if(m.type==='group'){
+  const known=regular.map(t=>t.num);
+  if(!known.length||known.some(x=>x!==known[0])){setFeedback('Necesitas al menos una ficha regular de valor coherente para sugerir un grupo.','warn');return;}
+  const occupied=new Set(regular.map(t=>t.color));
+  for(const j of wild){const available=['R','A','V','N'].find(c=>!occupied.has(c));if(!available){setFeedback('No hay colores disponibles para todos los comodines.','warn');return;}occupied.add(available);replacements.push({j,num:known[0],color:available});}
+ }else{
+  if(!regular.length){setFeedback('Coloca al menos una ficha normal para sugerir la escalera.','warn');return;}
+  const color=regular[0].color;
+  if(regular.some(t=>t.color!==color)){setFeedback('Las fichas regulares deben tener el mismo color.','warn');return;}
+  const known=regular.map(t=>t.num),n=all.length;
+  const options=[];
+  for(let start=1;start<=14-n;start++){
+   const seq=Array.from({length:n},(_,i)=>start+i);
+   if(known.every(x=>seq.includes(x))&&new Set(known).size===known.length){
+    const missing=seq.filter(x=>!known.includes(x));if(missing.length===wild.length)options.push(missing);
+   }
+  }
+  if(!options.length){setFeedback('No existe una escalera consecutiva con las fichas indicadas.','warn');return;}
+  const missing=options.at(-1);
+  replacements=wild.map((j,i)=>({j,num:missing[i],color}));
+ }
+ for(const r of replacements)r.j.assign={num:r.num,color:r.color};
+ m.factored=false;m.proof=false;reveal=false;
+ feedback={text:'Sustitución sugerida: '+replacements.map(r=>jokerLabel(r.j)+' ↦ '+r.num+r.color).join('; ')+'. Ahora verifica el factor común.',kind:'success'};render();
+}
+function jokerControls(m){
+ const w=inMeld(m).filter(t=>t.wild);if(!w.length)return '';
+ let html='<div class="joker-settings"><strong>★ Sustituir comodín:</strong>';
+ for(const t of w){const n=t.assign?.num||'',c=t.assign?.color||'';
+  html+=`<label>${jokerLabel(t)} · valor <select data-joker-id="${t.id}" data-field="num" aria-label="Valor de ${jokerLabel(t)}"><option value="">—</option>${Array.from({length:13},(_,i)=>`<option value="${i+1}" ${n===i+1?'selected':''}>${i+1}</option>`).join('')}</select></label>`;
+  html+=`<label>color <select data-joker-id="${t.id}" data-field="color" aria-label="Color de ${jokerLabel(t)}"><option value="">—</option>${Object.entries(COLOR).map(([key,cfg])=>`<option value="${key}" ${c===key?'selected':''}>${cfg.name}</option>`).join('')}</select></label>`;
+ }
+ return html+'<button class="btn btn-warm" data-suggest="yes">Sugerir</button></div>';
+}
+function factor(id,method){const m=getMeld(id),valid=assess(m);if(!valid.ok){setFeedback('Todavía no puedes factorizar: '+valid.reason,'warn');return;}const correct=m.type==='run'?'color':'power';if(method!==correct){setFeedback(m.type==='run'?'El color es el factor común de la escalera; prueba «Extraer color».':'En un grupo, todas las fichas comparten el mismo exponente; prueba «Extraer xⁿ».','warn');return;}m.factored=true;m.proof=false;reveal=false;feedback={text:(m.type==='run'?'Correcto: primero extraemos el color y después la potencia menor de x.':'Correcto: extraemos la potencia del número común.')+' La combinación quedó justificada algebraicamente.',kind:'success'};render();}
+function proof(id){const m=getMeld(id);if(!m.factored){setFeedback('Primero factoriza la combinación.','warn');return;}m.proof=!m.proof;render();}
+function render(){if(!reveal&&$('solutionArea'))$('solutionArea').remove();renderNotice();$('countBadge').textContent=tiles.length+' fichas';const ft=tiles.filter(t=>!t.loc&&t.origin==='mesa'),fh=tiles.filter(t=>!t.loc&&t.origin==='mano');$('tableFreeTiles').replaceChildren(...ft.map(tileEl));$('handFreeTiles').replaceChildren(...fh.map(tileEl));if(!ft.length)$('tableFreeTiles').innerHTML='<span class="empty">Ninguna ficha pendiente de la mesa</span>';if(!fh.length)$('handFreeTiles').innerHTML='<span class="empty">Sin fichas libres</span>';$('tableFreeCount').textContent=ft.length+' fichas';$('handFreeCount').textContent=fh.length+' fichas';$('comboCount').textContent=melds.length+' combinaciones';const container=$('melds');container.innerHTML='';for(let i=0;i<melds.length;i++){const m=melds[i],a=inMeld(m),v=assess(m);const card=document.createElement('div');card.className='meld-card '+(v.ok?'good':'invalid');card.dataset.meldid=m.id;card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label','Destino combinación '+(i+1));card.innerHTML=`<div class="meld-top"><div class="meld-title"><strong>${String(i+1).padStart(2,'0')} · ${m.type==='run'?'Escalera':'Grupo'}</strong><select class="type-selector" aria-label="Cambiar tipo de combinación"><option value="run" ${m.type==='run'?'selected':''}>Escalera</option><option value="group" ${m.type==='group'?'selected':''}>Grupo</option></select></div><button class="icon-btn" title="Eliminar combinación" aria-label="Eliminar combinación">×</button></div><div class="meld-tiles"></div><div class="validation ${v.ok?'ok':''}">${v.ok?'✓ ':'⚠ '}${escapeHTML(v.reason)}</div>${jokerControls(m)}<div class="math-mini">${a.length?'Forma desarrollada: '+basicSum(a):'Coloca fichas para construir un polinomio.'}</div><div class="factor-buttons"><button class="btn" data-method="color">Extraer color</button><button class="btn" data-method="power">Extraer xⁿ</button>${m.factored?'<button class="btn btn-soft" data-proof="yes">'+(m.proof?'Ocultar':'Ver')+' identidad</button>':''}</div>${m.factored?'<div class="math-line"><b>Factorización:</b> '+(m.type==='run'?colorOnly(m)+' = '+factored(m):factored(m))+'</div>':''}${m.proof?'<div class="tooltip-lesson">'+identity(m).proof+'<div style="margin-top:4px">'+identity(m).why+'</div></div>':''}`;
+ card.querySelector('.meld-tiles').replaceChildren(...a.slice().sort((x,y)=>(effective(x)?.num||99)-(effective(y)?.num||99)).map(tileEl));if(!a.length)card.querySelector('.meld-tiles').innerHTML='<span class="empty">Pulsa aquí para agregar la ficha seleccionada</span>';card.querySelector('select').addEventListener('change',e=>changeType(m.id,e.target.value));card.querySelector('.icon-btn').addEventListener('click',()=>deleteMeld(m.id));card.querySelectorAll('[data-method]').forEach(b=>b.addEventListener('click',()=>factor(m.id,b.dataset.method)));const pb=card.querySelector('[data-proof]');if(pb)pb.addEventListener('click',()=>proof(m.id));card.querySelectorAll('[data-joker-id]').forEach(el=>el.addEventListener('change',()=>assignJoker(el.dataset.jokerId,el.dataset.field,el.value)));const suggest=card.querySelector('[data-suggest]');if(suggest)suggest.addEventListener('click',()=>suggestJokers(m));dropTarget(card,m.id);container.appendChild(card);}
+ const used=tiles.filter(t=>t.loc&&t.origin==='mano');
+ $('points').textContent=used.reduce((sum,t)=>sum+tileScore(t),0)+(used.some(t=>t.wild&&!effective(t))?'…':'');
+ $('played').textContent=used.length;
+ $('factors').textContent=melds.filter(m=>m.ids.length&&m.factored).length+'/'+melds.filter(m=>m.ids.length).length;
+ const regular=tiles.filter(t=>!t.wild),jokers=tiles.filter(t=>t.wild);
+ const physical=coeffSum(regular);
+ $('originalExpr').innerHTML='<b>P</b><sub>físico</sub> = '+(regular.length?physical+(jokers.length?' + ':''):'')+jokers.map(symbol).join(' + ');
+ $('substitutions').innerHTML=jokers.length?jokers.map(t=>`σ(${symbol(t)}) = ${t.loc?assignmentExpr(t):symbol(t)+' (sin jugar)'}`).join('<div></div>'):'Sin comodines: σ es la identidad.';
+ $('effectiveExpr').innerHTML='<b>P</b><sub>σ</sub>(x) = '+coeffSum(tiles);
+ const expr=melds.filter(m=>m.ids.length).map(m=>(m.factored&&!showExpanded)?factored(m):'('+basicSum(inMeld(m))+')');
+ const loose=tiles.filter(t=>!t.loc);if(loose.length)expr.push('('+coeffSum(loose)+')');
+ $('currentExpr').innerHTML='<b>P</b><sub>reorganizado</sub> = '+(expr.join(' + ')||'0');
+ $('conservation').textContent=showExpanded?'Al desarrollar y reunir términos iguales, P_reorganizado coincide con P_σ. La igualdad depende de las sustituciones escogidas.':'El inventario físico conserva J₁, J₂ como fichas. La igualdad de los polinomios reorganizados se interpreta después de aplicar σ.';
+ $('expandBtn').textContent=showExpanded?'↩ Ver factorizaciones':'≡ Desarrollar polinomios';
+ if(reveal)renderSolution();
+}
+function judge(){
+ if(!tiles.length){setFeedback('El ejercicio está vacío.','warn');return;}
+ if(!melds.some(m=>m.ids.length)){setFeedback('Construye primero una escalera o un grupo.','warn');return;}
+ const problems=[];
+ for(const m of melds){if(!m.ids.length)continue;
+  const v=assess(m);if(!v.ok)problems.push('Combinación inválida: '+v.reason);
+  else if(!m.factored)problems.push('Falta factorizar una combinación válida.');
+ }
+ if(tiles.some(t=>t.origin==='mesa'&&!t.loc))problems.push('Todas las fichas iniciales de la mesa deben permanecer agrupadas.');
+ const hand=tiles.filter(t=>t.origin==='mano'&&t.loc),score=hand.reduce((sum,t)=>sum+tileScore(t),0);
+ if(!hand.length)problems.push('No has jugado ninguna ficha de la mano.');
+ if(opening&&score<30)problems.push('La apertura exige al menos 30 puntos; actualmente tienes '+score+'.');
+ if(problems.length){setFeedback('Aún no es una jugada terminada: '+problems[0],'warn');return;}
+ const opt=calculateBest();
+ if(opt&&score===opt.score)setFeedback('¡Correcto! Jugada válida, factorizada y óptima dentro del ejercicio: '+score+' puntos desde tu mano.','success');
+ else if(opt&&score<opt.score)setFeedback('¡Jugada válida! Has colocado '+score+' puntos; existe otra distribución de '+opt.score+'.','success');
+ else setFeedback('¡Jugada válida! Has colocado '+score+' puntos y justificado las sustituciones y factorizaciones.','success');
+}
+function hint(){
+ if(!tiles.length){setFeedback('Carga un desafío para empezar.','warn');return;}
+ const h={0:'Pista: retira 6R de la escalera y forma x⁶(r+b+g).',1:'Pista: la suma de valores usados en la apertura debe alcanzar 30.',2:'Pista: forma una escalera con 5R,6R,7R y compara los grupos.',3:'Pista: 5R, J₁, 7R → J₁ debe representar 6 rojo (rx⁶).',4:'Pista: un grupo con 9R y 9A necesita otro color: σ(J₁)=gx⁹ o kx⁹.',5:'Pista: usar J₁=5R y J₂=6R permite jugar cuatro fichas (22 puntos). ¿Qué ocurre si formas 7R,8R,9R con dos comodines?'};
+ setFeedback(h[scenario]||'Pista: elige para J un exponente y color que completen una secuencia o grupo, y después comprueba los factores.','warn');
+}
+function expand(){showExpanded=!showExpanded;const a=tiles.filter(t=>t.loc),b=tiles.filter(t=>!t.loc);feedback={text:showExpanded?'Has aplicado la distributividad: '+a.length+' fichas agrupadas y '+b.length+' libres. Comprueba que su suma coincide con el inventario.':'Se restauró la forma factorizada de las combinaciones justificadas.',kind:'success'};render();}
+// Solución exacta de ejercicios pequeños: enumeración de combinaciones válidas como herramienta de evaluación,
+// no como parte del procedimiento algebraico que debe realizar el estudiante.
+function calculateBest(){
+ if(optimumCache!==undefined)return optimumCache;
+ const n=tiles.length,jokerIndices=tiles.map((t,i)=>t.wild?i:-1).filter(i=>i>=0);
+ if(n>15||jokerIndices.length&&n>14)return null;
+ if(!n)return {score:0,played:0,groups:[]};
+ const candidates=new Map(),arr=tiles.map((t,i)=>({...t,index:i}));
+ const regular=arr.filter(t=>!t.wild),J=jokerIndices;
+ function subsetJ(k){if(k===0)return [[]];if(k===1)return J.map(i=>[i]);if(k===2&&J.length===2)return [[J[0],J[1]]];return [];}
+ function add(ids,type,asgn){
+  const mask=ids.reduce((m,id)=>m|(1<<id),0);
+  const sig=mask+':'+type+':'+Object.entries(asgn).sort(([a],[b])=>a.localeCompare(b)).map(([id,x])=>id+'-'+x.num+'-'+x.color).join('/');
+  if(candidates.has(sig))return;
+  const score=ids.reduce((sum,id)=>sum+(tiles[id].origin==='mano'?(tiles[id].wild?asgn[id].num:tiles[id].num):0),0);
+  const played=ids.filter(i=>tiles[i].origin==='mano').length;
+  candidates.set(sig,{mask,ids,type,assignments:asgn,score,played});
+ }
+ // Grupos: elegir fichas normales sin repetir colores y asignar colores libres a los comodines.
+ for(let value=1;value<=13;value++){
+  const byColor=['R','A','V','N'].map(c=>regular.filter(t=>t.num===value&&t.color===c));
+  function recColor(ci,selected,occupied){
+   if(ci===4){
+    for(let jcount=0;jcount<=J.length;jcount++){
+     if(selected.length+jcount<3||selected.length+jcount>4)continue;
+     const avail=['R','A','V','N'].filter(c=>!occupied.includes(c));
+     function assignCols(pos,picked,asgn){
+      if(pos===picked.length){add(selected.concat(picked),'group',asgn);return;}
+      for(const c of avail){if(Object.values(asgn).some(v=>v.color===c))continue;
+       assignCols(pos+1,picked,{...asgn,[picked[pos]]:{num:value,color:c}});
+      }
+     }
+     for(const picked of subsetJ(jcount))if(avail.length>=jcount)assignCols(0,picked,{});
+    }
+    return;
+   }
+   recColor(ci+1,selected,occupied);
+   for(const t of byColor[ci])recColor(ci+1,selected.concat(t.index),occupied.concat(['R','A','V','N'][ci]));
+  }
+  recColor(0,[],[]);
+ }
+ // Escaleras: recorrer intervalos; para cada rango utilizar una ficha normal o uno de los dos comodines.
+ for(const color of ['R','A','V','N']){
+  const lists=Array.from({length:14},(_,v)=>regular.filter(t=>v&&t.num===v&&t.color===color));
+  for(let low=1;low<=11;low++)for(let high=low+2;high<=13;high++){
+   if(Array.from({length:high-low+1},(_,i)=>lists[low+i].length===0).filter(Boolean).length>J.length)continue;
+   function rec(v,usedJ,selected,asgn){
+    if(v>high){add(selected,'run',asgn);return;}
+    for(const t of lists[v])rec(v+1,usedJ,selected.concat(t.index),asgn);
+    for(const id of J)if(!usedJ.includes(id))rec(v+1,usedJ.concat(id),selected.concat(id),{...asgn,[id]:{num:v,color}});
+   }
+   rec(low,[],[],{});
+  }
+ }
+ const byTile=Array.from({length:n},()=>[]);
+ for(const c of candidates.values())for(const id of c.ids)byTile[id].push(c);
+ const memo=new Map();
+ function solve(rem){
+  if(rem===0)return {score:0,played:0,groups:[]};
+  if(memo.has(rem))return memo.get(rem);
+  const first=rem&-rem,i=31-Math.clz32(first);let answer=null;
+  if(tiles[i].origin==='mano')answer=solve(rem^first);
+  for(const c of byTile[i]){
+   if((c.mask&rem)!==c.mask)continue;
+   const sub=solve(rem^c.mask);if(!sub)continue;
+   const val={score:sub.score+c.score,played:sub.played+c.played,groups:[c,...sub.groups]};
+   if(!answer||val.score>answer.score||(val.score===answer.score&&val.played>answer.played))answer=val;
+  }
+  memo.set(rem,answer);return answer;
+ }
+ const result=solve((1<<n)-1);
+ optimumCache=(!result||opening&&result.score<30)?null:result;
+ return optimumCache;
+}
+function renderSolution(){
+ const info=calculateBest(),box=$('solutionArea');if(!box)return;
+ if(!info){box.innerHTML='<p class="small">No hay solución completa, o la búsqueda automática se limita a 15 fichas sin comodines / 14 con comodines. La verificación manual sigue disponible hasta 30 fichas.</p>';return;}
+ let html='<div class="winner"><strong>'+info.score+' puntos óptimos</strong> · '+info.played+' fichas desde la mano</div><div class="solutions">';
+ for(const g of info.groups){
+  html+='<div class="solution-meld"><b style="font-size:12px">'+(g.type==='run'?'Escalera':'Grupo')+'</b><div>'+g.ids.map(i=>{
+   const t=tiles[i];return `<span class="mini-tile ${t.wild?'J':t.color}">${t.wild?'★→'+g.assignments[i].num+g.assignments[i].color:t.num+t.color}</span>`;
+  }).join('')+'</div></div>';
+ }
+ html+='</div>';
+ if(info.groups.length)html+='<button class="btn btn-soft" id="applySolutionBtn" type="button">Colocar solución en el tablero (sin factorizar)</button>';
+ box.innerHTML=html;
+ const btn=$('applySolutionBtn');if(btn)btn.addEventListener('click',applySolution);
+}
+function applySolution(){
+ const info=calculateBest();if(!info||!info.groups.length)return;
+ tiles.forEach(t=>{t.loc=null;if(t.wild)clearJoker(t);});melds=[];mid=0;
+ for(const g of info.groups){
+  const m={id:'m'+(++mid),type:g.type,ids:[],factored:false,proof:false};
+  for(const i of g.ids){const t=tiles[i];t.loc=m.id;m.ids.push(t.id);if(t.wild)t.assign={...g.assignments[i]};}
+  melds.push(m);
+ }
+ reveal=false;selected=null;feedback={text:'La distribución óptima está colocada. Ahora identifica cada sustitución y aplica las factorizaciones correspondientes.',kind:'success'};render();
+}
+function showSolution(){let area=$('solutionArea');if(area){area.remove();reveal=false;return;}area=document.createElement('div');area.id='solutionArea';area.className='math-box';$('operationsTab').appendChild(area);reveal=true;renderSolution();area.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function switchTab(to){mode=to;$('tabOperations').classList.toggle('active',mode==='operations');$('tabRules').classList.toggle('active',mode==='rules');$('operationsTab').style.display=mode==='operations'?'flex':'none';$('rulesTab').style.display=mode==='rules'?'block':'none';}
+function reset(){if(scenario>=0)init(scenario);else{tiles.forEach(t=>t.loc=null);melds=[];mid=0;selected=null;reveal=false;feedback={text:'Ejercicio reiniciado; vuelve a crear las combinaciones.',kind:''};render();}}
+for(const id of ['freeTable','freeHand']){dropTarget($(id),null);}document.querySelectorAll('.challenge').forEach(b=>b.addEventListener('click',()=>init(Number(b.dataset.scenario))));$('addRunBtn').addEventListener('click',()=>addMeld('run'));$('addGroupBtn').addEventListener('click',()=>addMeld('group'));$('resetBtn').addEventListener('click',reset);$('hintBtn').addEventListener('click',hint);$('solutionBtn').addEventListener('click',()=>{switchTab('operations');showSolution();});$('checkBtn').addEventListener('click',judge);$('expandBtn').addEventListener('click',expand);$('loadCustom').addEventListener('click',loadCustom);$('tabOperations').addEventListener('click',()=>switchTab('operations'));$('tabRules').addEventListener('click',()=>switchTab('rules'));
+init(0);
+</script>
+</body>
+</html>
