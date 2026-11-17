@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use RummiAlgebra V2 in your work, please cite the associated software release and manuscript."
+type: software
+title: "RummiAlgebra: Interactive Polynomial Learning with Jokers"
+version: "2"
+authors:
+  - family-names: "Lizama Pérez"
+    given-names: "Luis Adrián"
+    affiliation: "Universidad Autónoma Metropolitana, Unidad Lerma"
+abstract: "Browser-based educational prototype for Rummikub-style tile rearrangement, polynomial factorization and context-dependent joker substitution."
+keywords:
+  - algebra education
+  - polynomial operations
+  - game-based learning
+  - jokers
