@@ -6,17 +6,20 @@ Author: Luis Adrián Lizama Pérez, Universidad Autónoma Metropolitana, Unidad 
 
 ## Play
 
-Open [`index.html`](index.html) in a browser, or visit the GitHub Pages address after the site has been enabled. The game runs entirely client-side and requires no account or installation. No online services or external scripts are used by the HTML file.
+**[Play RummiAlgebra online](https://luislizama01.github.io/rummialgebra/)**. Alternatively, open [`index.html`](index.html) locally in a browser. The game runs entirely client-side and requires no account or installation. No online services or external scripts are used by the HTML file.
 
 Six activities include algebraic rearrangement, first-meld threshold, regrouping and one/two jokers. The exercise editor supports custom tile sets. For jokers, choose a value and a color and check the polynomial substitution and meld legality. The objective is educational: a correct polynomial identity alone does not guarantee a legal meld.
 
-## Publish with GitHub Pages
+## Public access and versioning
 
-1. Create a **public** GitHub repository, e.g. `rummialgebra`, and upload all files from this ZIP **at the repository root** (including `index.html`).
-2. In **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, branch **main**, folder **/(root)**; save.
-3. After deployment, copy the actual **Visit site** URL shown in Pages settings. Do not assume the URL until verified.
-4. Open the site in an incognito browser, try Challenge 4 (joker as missing 6R), then Challenge 6 (two jokers), and verify on a phone.
-5. Create a tagged GitHub Release for the version used in the paper, then deposit that release in Zenodo to obtain a version-specific DOI.
+- **Live application:** https://luislizama01.github.io/rummialgebra/
+- **Source code:** https://github.com/luislizama01/rummialgebra
+- **Test instructions:** [TESTING.md](TESTING.md)
+- **Independent reference checks:** [tests/verify_examples.py](tests/verify_examples.py), run `python tests/verify_examples.py`
+- **Releases:** [GitHub releases](https://github.com/luislizama01/rummialgebra/releases) (a versioned release and Zenodo DOI will be added after archiving).
+- **Archiving guide:** [ARCHIVING_ZENODO.md](ARCHIVING_ZENODO.md)
+
+The Pages website shows the current main-branch version; for scientific reproducibility, cite a tagged, archived release rather than a mutable branch.
 
 ## Evaluation and feedback
 
