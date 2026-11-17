@@ -16,7 +16,8 @@ Six activities include algebraic rearrangement, first-meld threshold, regrouping
 - **Source code:** https://github.com/luislizama01/rummialgebra
 - **Test instructions:** [TESTING.md](TESTING.md)
 - **Independent reference checks:** [tests/verify_examples.py](tests/verify_examples.py), run `python tests/verify_examples.py`
-- **Releases:** [GitHub releases](https://github.com/luislizama01/rummialgebra/releases) (a versioned release and Zenodo DOI will be added after archiving).
+- **Frozen v2.0.0 source:** [GitHub release](https://github.com/luislizama01/rummialgebra/releases/tag/v2.0.0)
+- **Archived v2.0.0 record:** [Zenodo DOI](https://doi.org/10.5281/zenodo.24323391).
 - **Archiving guide:** [ARCHIVING_ZENODO.md](ARCHIVING_ZENODO.md)
 
 The Pages website shows the current main-branch version; for scientific reproducibility, cite a tagged, archived release rather than a mutable branch.
@@ -34,7 +35,7 @@ See [TESTING.md](TESTING.md). For a bug or usability report, open a GitHub Issue
 
 ## Citation and license
 
-The [CITATION.cff](CITATION.cff) file supplies author/title/version metadata. Once a Zenodo DOI is assigned, add it here and to the article's Software Availability paragraph.
+The [CITATION.cff](CITATION.cff) file supplies author/title/version metadata. Cite the archived V2.0.0 software using DOI [`10.5281/zenodo.24323391`](https://doi.org/10.5281/zenodo.24323391). The editable current `main` branch and GitHub Pages version may differ from the archived release.
 
 **Licensing decision required before general software reuse.** This kit does not grant an open-source license. Public access for testing is different from granting modification or redistribution rights. Select and add an explicit license after reviewing institutional ownership and any third-party materials.
 
